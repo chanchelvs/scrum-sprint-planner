@@ -35,6 +35,7 @@ export class SprintCalculatorComponent implements OnInit {
 
   clearStories() {
     this.storyService.clearStories();
+    this.storyService.clearSelectedStories();
     this.sprintForm.reset();
   }
 

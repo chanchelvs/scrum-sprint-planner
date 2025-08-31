@@ -151,6 +151,39 @@ describe('SprintCalculatorComponent', () => {
       expect(stories.length).toBe(0);
     });
   });
+  it('should auto-select stories within the given sprint capacity (13 points)', () => {
+    component.sprintForm.setValue({ sprintPoints: 13 });
+  
+    const availableStories: Story[] = [
+      { name: 'Login Feature', points: 2 },
+      { name: 'Dashboard', points: 3 },
+      { name: 'API Integration', points: 5 },
+      { name: 'UI Design', points: 6 },
+      { name: 'Database Setup', points: 9 }
+    ];
+  
+    const expectedStories: Story[] = [
+      { name: 'Login Feature', points: 2 },
+      { name: 'API Integration', points: 5 },
+      { name: 'UI Design', points: 6 }
+    ];
+  
+    storyServiceSpy.setAutoSelectedStories.and.callFake((capacity: number) => {
+      expect(capacity).toBe(13);
+      selectedStories$.next(expectedStories);
+    });
+  
+    component.autoSelect();
+  
+    expect(storyServiceSpy.setAutoSelectedStories).toHaveBeenCalledWith(13);
+  
+    selectedStories$.subscribe(stories => {
+      expect(stories).toEqual(expectedStories);
+      const totalPoints = stories.reduce((sum, s) => sum + s.points, 0);
+      expect(totalPoints).toBeLessThanOrEqual(13);
+      expect(totalPoints).toBe(13); // exact match
+    });
+  });
   
   
 });

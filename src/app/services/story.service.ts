@@ -21,21 +21,54 @@ export class StoryService {
     return this.stories.value;
   }
 
-  setAutoSelectedStories(sprintPoints: number) {
-    const stories = [...this.stories.value].sort((a, b) => b.points - a.points); // largest-first
-    const selected: Story[] = [];
-    let sum = 0;
-    for (const s of stories) {
-      if (sum + s.points <= sprintPoints) {
-        selected.push(s);
-        sum += s.points;
-      }
+ getBestStoryCombination(stories: Story[], sprintPoints: number): Story[] {
+  stories.sort((a, b) => a.points - b.points);
+
+  const bestCombination: Story[] = [];
+  let bestSum = 0;
+  const current: Story[] = [];
+
+  function findBestCombination(index: number, currentSum: number) {
+    if (currentSum > sprintPoints) return;
+
+    if (
+      currentSum > bestSum ||
+      (currentSum === bestSum && isLexSmaller(current, bestCombination))
+    ) {
+      bestCombination.length = 0;
+      bestCombination.push(...current);
+      bestSum = currentSum;
     }
-    // display ascending if you want
-    selected.sort((a, b) => a.points - b.points);
-    this.selectedStories.next(selected);
+
+    for (let i = index; i < stories.length; i++) {
+      current.push(stories[i]);
+      findBestCombination(i + 1, currentSum + stories[i].points);
+      current.pop();
+    }
   }
 
+  function isLexSmaller(a: Story[], b: Story[]): boolean {
+    for (let i = 0; i < Math.min(a.length, b.length); i++) {
+      if (a[i].points < b[i].points) return true;
+      if (a[i].points > b[i].points) return false;
+    }
+    return a.length < b.length;
+  }
+  
+  findBestCombination(0, 0);
+  return bestCombination;
+}
+
+setAutoSelectedStories(sprintPoints: number): void {
+  const stories = [...this.stories.value];
+  const bestStories = this.getBestStoryCombination(stories, sprintPoints);
+  this.selectedStories.next(bestStories);
+}
+
+  
+  
+  
+  
 
   getAutoSelectdStories() {
     return this.selectedStories.asObservable();
