@@ -1,0 +1,45 @@
+
+<div class="add-story">
+  <h2>Add New Story</h2>
+  <form [formGroup]="storyForm" (ngSubmit)="addStory()">
+    <div class="form-group">
+      <input
+        formControlName="name"
+        placeholder="Story Name"
+        type="text"
+        class="form-control"
+        [class.is-invalid]="storyForm.get('name')?.invalid && storyForm.get('name')?.touched || isDuplicated"
+      />
+      <div class="error-message">
+        <span *ngIf="storyForm.get('name')?.errors?.['required'] && storyForm.get('name')?.touched">
+          Story name is required
+        </span>
+        <span *ngIf="isDuplicated">
+          Story name already exists
+        </span>
+      </div>
+    </div>
+    <div class="form-group">
+      <input
+        formControlName="points"
+        placeholder="Story Points"
+        type="number"
+        min="1"
+        class="form-control"
+        [class.is-invalid]="storyForm.get('points')?.invalid && storyForm.get('points')?.touched"
+      />
+      <div class="error-message" *ngIf="storyForm.get('points')?.invalid && storyForm.get('points')?.touched">
+        Points must be greater than 0
+      </div>
+    </div>
+    <div class="form-group">
+      <input
+        formControlName="description"
+        placeholder="Description"
+        type="text"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="btn-primary" [disabled]="storyForm.invalid">Add Story</button>
+  </form>
+</div>

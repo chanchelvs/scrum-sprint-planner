@@ -1,0 +1,23 @@
+<div class="sprint-calculator">
+  <h2>Sprint Calculator</h2>
+  <form [formGroup]="sprintForm">
+    <div class="form-group">
+      <input
+        formControlName="sprintPoints"
+        placeholder="Sprint Capacity"
+        type="number"
+        min="1"
+        class="form-control"
+        [class.is-invalid]="sprintForm.get('sprintPoints')?.invalid && sprintForm.get('sprintPoints')?.touched"
+      />
+      <div class="error-message" *ngIf="sprintForm.get('sprintPoints')?.invalid && sprintForm.get('sprintPoints')?.touched">
+        Target points must be greater than 0
+      </div>
+    </div>
+    <div class="button-group">
+      <button (click)="autoSelect()" class="btn-primary" [disabled]="sprintForm.invalid">Auto Select Stories</button>
+      <button (click)="clearSelectedStories()" class="btn-secondary">Clear Selected Stories</button>
+      <button (click)="clearStories()" class="btn-danger">Clear All Stories</button>
+    </div>
+  </form>
+</div>

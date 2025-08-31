@@ -1,0 +1,43 @@
+@use '../../../../styles.scss';
+@use '../../../../variables' as *;   
+.sprint-calculator {
+  padding: 15px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-primary {
+  @include button-base;
+  background: $primary-color;
+
+  &:disabled {
+    opacity: 50%;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
+    background: darken($primary-color, 10%);
+  }
+}
+
+.btn-secondary {
+  @include button-base;
+  background: $secondary-color;
+
+  &:hover {
+    background: darken($secondary-color, 10%);
+  }
+}
+
+.btn-danger {
+  @include button-base;
+  background: $danger-color;
+
+  &:hover {
+    background: darken($danger-color, 10%);
+  }
+}

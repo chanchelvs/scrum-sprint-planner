@@ -1,0 +1,95 @@
+.sprint-list {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+
+  h2 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .main-list {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+    gap: 20px;
+    overflow-y: auto;          
+    padding-right: 6px;
+    box-sizing: border-box;
+  }
+
+  .story-card {
+    width: 260px;                
+    min-height: 160px;
+    background: #1c2c45;
+    color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+  
+    .story-header {
+      margin-bottom: 8px;
+      &::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+    }
+
+    .story-points {
+      float: right;              
+      white-space: nowrap;     
+      margin-left: 10px;
+      font-size: 0.9rem;
+      color: #ddd;
+      text-align: right;
+    }
+
+    .story-name {
+      display: block;            
+      font-weight: 600;
+      font-size: 1rem;
+      word-wrap: break-word;     
+      white-space: normal;     
+    }
+
+    
+    .story-desc {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      color: #ddd;
+      word-wrap: break-word;
+      white-space: normal;
+      overflow: visible;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .story-card {
+      width: 220px;
+      min-height: 140px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .main-list {
+      justify-content: center;
+    }
+    .story-card {
+      width: 100%;
+      min-height: auto;        
+    }
+  }
+}

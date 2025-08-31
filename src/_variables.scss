@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$danger-color: #dc3545;
+$light-bg: #f8f9fa;
+$border-color: #ddd;
+$error-color: #dc3545;
+$text-color: #333;
+$text-muted: #666;
+
+// Mixins
+@mixin button-base {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+@mixin form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &.is-invalid {
+    border-color: $error-color;
+  }
+}

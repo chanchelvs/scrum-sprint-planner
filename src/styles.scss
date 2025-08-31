@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@use '_variables' as *;
+// Global Styles
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: $text-color;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+.form-control {
+  @include form-control;
+}

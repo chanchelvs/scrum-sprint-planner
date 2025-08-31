@@ -1,0 +1,14 @@
+<div class="sprint-list">
+  <h2>Auto Selected Sprint</h2>
+  <div class="main-list">
+    <div class="story-card" *ngFor="let story of sprintStoryListing">
+      <div class="story-header">
+        <span class="story-name">{{ story.name }}</span>
+        <span class="story-points">Point: {{ story.points }}</span>
+      </div>
+      <div class="story-desc">
+        {{ story.description || 'No description available' }}
+      </div>
+    </div>
+  </div>
+</div>
