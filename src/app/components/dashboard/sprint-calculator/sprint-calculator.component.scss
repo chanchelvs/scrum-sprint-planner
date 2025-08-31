@@ -1,5 +1,6 @@
 @use '../../../../styles.scss';
-@use '../../../../variables' as *;   
+@use '../../../../variables' as *;
+@use "sass:color";
 .sprint-calculator {
   padding: 15px;
 }
@@ -20,7 +21,7 @@
   }
 
   &:not(:disabled):hover {
-    background: darken($primary-color, 10%);
+    background: color.adjust($primary-color, $lightness: -10%);
   }
 }
 
@@ -29,7 +30,7 @@
   background: $secondary-color;
 
   &:hover {
-    background: darken($secondary-color, 10%);
+    background: color.adjust($secondary-color, $lightness: -10%);
   }
 }
 
@@ -38,6 +39,6 @@
   background: $danger-color;
 
   &:hover {
-    background: darken($danger-color, 10%);
+    background: color.adjust($danger-color, $lightness: -10%);
   }
 }

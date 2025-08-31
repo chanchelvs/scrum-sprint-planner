@@ -1,5 +1,6 @@
 @use '../../../../styles.scss';
 @use '../../../../variables' as *;   
+@use "sass:color";
 
 .add-story {
   padding: 15px;
@@ -15,6 +16,6 @@
   }
 
   &:not(:disabled):hover {
-    background: darken($primary-color, 10%);
+    background: color.adjust($primary-color, $lightness: -10%);;
   }
 }

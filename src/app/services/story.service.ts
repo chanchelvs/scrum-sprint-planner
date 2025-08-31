@@ -7,7 +7,7 @@ import { Story } from '../models/story.model';
 })
 export class StoryService {
   private stories = new BehaviorSubject<Story[]>([]);
-  private selectedStories = new BehaviorSubject<Story[]>([]);
+  public selectedStories = new BehaviorSubject<Story[]>([]);
 
   setStories(newStory: Story) {
     const availableStories = this.stories.value;
